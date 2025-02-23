@@ -33,6 +33,7 @@ export function loadPage(page) {
   if (currentPage) {
     currentPage.destroy();
   }
+  currentPage = page;
   asHTMLElement(document.querySelector("main")).appendChild(page.root);
 }
 
