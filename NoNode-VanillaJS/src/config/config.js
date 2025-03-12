@@ -7,7 +7,16 @@ export class Configuration {
   static env;
 
   static async initializeAsync() {
-    const response = await fetch(new URL(`./.env?url`, import.meta.url));
-    Configuration.env = /** @type {ConfigEnv} */ (await response.text());
+    try {
+      const response = await fetch(new URL(`./.env?url`, import.meta.url));
+      if (response.ok) {
+        Configuration.env = /** @type {ConfigEnv} */ (await response.text());
+      } else {
+        throw new Error(`response indicating no success: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+      Configuration.env = "standalone";
+    }
   }
 }
