@@ -5,6 +5,7 @@ import { Component } from "./component";
 import { asHTMLButtonElement, asHTMLInputElement } from "./htmlHelper";
 import { globalUser } from "./main";
 import { html } from "./htmlHelper";
+import { SimpleDialog } from "./simple-dialog";
 
 export class LoginPageNew extends Component {
   /** @param {Component} parent */
@@ -24,12 +25,16 @@ export class LoginPageNew extends Component {
 
           <button type="button">Anmelden</button>
         </form>
+
+        <button id="dialog-trigger">Open Dialog</button>
+        <simple-dialog id="dialog" title="Der Titel" message="Dies ist der Inhaltstext."></simple-dialog>
       </div>
     `;
   }
 
   attachEventListeners() {
     asHTMLButtonElement(this.root.querySelector("form button")).addEventListener("click", () => this.onClickLogin());
+    asHTMLButtonElement(this.root.querySelector("#dialog-trigger")).addEventListener("click", () => this.openDialog());
   }
 
   async onClickLogin() {
@@ -37,6 +42,11 @@ export class LoginPageNew extends Component {
     if (fetchedUser != null) {
       globalUser.set(fetchedUser);
     }
+  }
+
+  openDialog() {
+    const dialog = this.root.querySelector("#dialog");
+    dialog.isOpen = true;
   }
 }
 
