@@ -5,7 +5,6 @@ import { IAppBackendApi } from "./appBackendApiInterface.js";
 /**
  * @implements {IAppBackendApi}
  */
-
 export class AppBackendApiDummy {
   constructor() {}
 

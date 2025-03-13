@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * Interface for classes that represent a AppBackendApi.
+ * Interface for classes that represent an AppBackendApi.
  *
  * @interface
  */
